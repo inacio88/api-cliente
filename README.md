@@ -1,1 +1,4 @@
 # api-cliente
+
+Banco:
+docker run --name api-cliente-postgres -e POSTGRES_PASSWORD=1q2w3e4r@@@ -d -p 5436:5432 postgres
