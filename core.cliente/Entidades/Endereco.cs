@@ -30,7 +30,7 @@ public class Endereco
         {
             if (!Regex.IsMatch(value ?? "", @"^\d{5}-\d{3}$"))
                 throw new ArgumentException("CEP inválido. Formato esperado: 00000-000.");
-            _cep = value;
+            _cep = value ?? string.Empty;
         }
     }
 

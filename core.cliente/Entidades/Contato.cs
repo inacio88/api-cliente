@@ -5,7 +5,7 @@ public class Contato
 {
     public int Id { get; set; }
     public int IdCliente { get; set; }
-    private string _tipo;
+    private string _tipo = string.Empty;
     [Required]
     public string Tipo
     {
