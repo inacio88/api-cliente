@@ -1,4 +1,8 @@
 using api.cliente.Data;
+using api.cliente.EndPoints;
+using api.cliente.Repositorios;
+using core.cliente.Interfaces;
+using core.cliente.Servicos;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,8 +17,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(conexao);
 });
 
-var app = builder.Build();
+builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+builder.Services.AddScoped<IClienteServico, ClienteServico>();
 
+var app = builder.Build();
+app.MapEndpoints();
 app.UseSwagger();
 app.UseSwaggerUI();
 
