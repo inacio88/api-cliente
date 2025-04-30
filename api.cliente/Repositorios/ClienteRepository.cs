@@ -1,4 +1,5 @@
 using api.cliente.Data;
+using core.cliente.DTOs;
 using core.cliente.Entidades;
 using core.cliente.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -37,13 +38,29 @@ namespace api.cliente.Repositorios
             await appDbContext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Cliente>> ListarTodosAsync()
+        public async Task<IEnumerable<Cliente>> ListarTodosAsync(FiltrarClientesRequest filtro)
         {
-            return await appDbContext.Clientes
+            var query = appDbContext.Clientes
                 .Include(c => c.Contatos)
                 .Include(c => c.Enderecos)
-                .AsNoTracking()
-                .ToListAsync();
+                .AsNoTracking();
+
+            if (!string.IsNullOrEmpty(filtro.Nome))
+            {
+                query = query.Where(c => c.Nome.Contains(filtro.Nome));
+            }
+
+            if (!string.IsNullOrEmpty(filtro.Email))
+            {
+                query = query.Where(c => c.Email.Contains(filtro.Email));
+            }
+
+            if (!string.IsNullOrEmpty(filtro.CPF))
+            {
+                query = query.Where(c => c.CPF.Contains(filtro.CPF));
+            }
+
+            return await query.ToListAsync();
         }
 
         public async Task<Cliente?> ObterPorIdAsync(int id)

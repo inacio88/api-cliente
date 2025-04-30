@@ -1,3 +1,4 @@
+using core.cliente.DTOs;
 using core.cliente.Interfaces;
 
 namespace api.cliente.EndPoints.Clientes
@@ -9,15 +10,16 @@ namespace api.cliente.EndPoints.Clientes
             app.MapGet("/listar", HandleAsync)
                .WithName("Clientes: Listar todos")
                .WithSummary("Lista todos os clientes")
-               .WithDescription("Retorna uma lista de todos os clientes cadastrados")
+               .WithDescription("Retorna uma lista de todos os clientes cadastrados com filtros opcionais")
                .WithOrder(5);
         }
 
-        private static async Task<IResult> HandleAsync(IClienteServico servico)
+        private static async Task<IResult> HandleAsync(
+            [AsParameters] FiltrarClientesRequest filtro,
+            IClienteServico servico)
         {
-            var clientes = await servico.ListarTodosAsync();
+            var clientes = await servico.ListarTodosAsync(filtro);
             return TypedResults.Ok(clientes);
         }
-
     }
 }

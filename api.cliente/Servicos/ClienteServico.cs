@@ -71,9 +71,9 @@ namespace core.cliente.Servicos
             await clienteRepository.AtualizarAsync(cliente);
         }
 
-        public async Task<IEnumerable<Cliente>> ListarTodosAsync()
+        public async Task<IEnumerable<Cliente>> ListarTodosAsync(FiltrarClientesRequest request)
         {
-            return await clienteRepository.ListarTodosAsync();
+            return await clienteRepository.ListarTodosAsync(request);
         }
 
         public async Task<Cliente?> ObterPorIdAsync(ObterClientePorIdRequest request)
