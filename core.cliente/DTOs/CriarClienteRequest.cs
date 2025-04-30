@@ -10,5 +10,7 @@ namespace core.cliente.DTOs
         public string CPF { get; set; } = string.Empty;
 
         public string RG { get; set; } = string.Empty;
+        public List<CriarContatoRequest> Contatos { get; set; } = [];
+        public List<CriarEnderecoRequest> Enderecos {get;set;} = [];
     }
 }
