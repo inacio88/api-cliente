@@ -1,5 +1,4 @@
 using api.cliente.Data;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,13 +6,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
 
-string conexao = builder.Configuration.GetValue<string>("conexao") ?? String.Empty;
+string conexao = builder.Configuration.GetValue<string>("conexao") ?? string.Empty;
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseNpgsql(conexao);
 });
+
+var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();
