@@ -6,7 +6,7 @@ namespace api.cliente.EndPoints.Clientes
     {
         public static void Map(IEndpointRouteBuilder app)
         {
-            app.MapGet("", HandleAsync)
+            app.MapGet("/listar", HandleAsync)
                .WithName("Clientes: Listar todos")
                .WithSummary("Lista todos os clientes")
                .WithDescription("Retorna uma lista de todos os clientes cadastrados")

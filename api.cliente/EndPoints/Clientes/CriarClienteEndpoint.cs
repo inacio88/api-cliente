@@ -7,7 +7,7 @@ namespace api.cliente.EndPoints.Clientes
     {
         public static void Map(IEndpointRouteBuilder app)
         {
-            app.MapPost("", HandleAsync)
+            app.MapPost("/criar", HandleAsync)
                .WithName("Clientes: Criar")
                .WithSummary("Cria um cliente")
                .WithDescription("Cria um cliente com dados básicos")

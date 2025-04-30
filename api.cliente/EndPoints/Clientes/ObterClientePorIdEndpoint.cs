@@ -7,7 +7,7 @@ namespace api.cliente.EndPoints.Clientes
     {
         public static void Map(IEndpointRouteBuilder app)
         {
-            app.MapGet("/{id}", HandleAsync)
+            app.MapGet("/listar/{id}", HandleAsync)
                .WithName("Clientes: Obter por ID")
                .WithSummary("Obtém cliente por ID")
                .WithDescription("Obtém um cliente pelo ID fornecido")

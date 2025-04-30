@@ -7,7 +7,7 @@ namespace api.cliente.EndPoints.Clientes
     {
         public static void Map(IEndpointRouteBuilder app)
         {
-            app.MapDelete("/{id}", HandleAsync)
+            app.MapDelete("/remover/{id}", HandleAsync)
                .WithName("Clientes: Remover")
                .WithSummary("Remove um cliente")
                .WithDescription("Remove um cliente pelo ID")

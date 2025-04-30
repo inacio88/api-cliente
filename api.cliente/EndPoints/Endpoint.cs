@@ -9,7 +9,7 @@ namespace api.cliente.EndPoints
             var endpoints = app.MapGroup("");
 
 
-            endpoints.MapGroup("v1/clientes")
+            endpoints.MapGroup("v1/cliente")
                 .WithTags("Cliente")
                 .MapEndpoint<CriarClienteEndpoint>()
                 .MapEndpoint<AtualizarClienteEndpoint>()
