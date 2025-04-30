@@ -56,5 +56,7 @@ namespace core.cliente.Entidades
             rg = Regex.Replace(rg ?? "", "[^0-9]", "");
             return rg.Length >= 7 && rg.Length <= 9;
         }
+        public ICollection<Contato> Contatos { get; set; } = null!;
+        public ICollection<Endereco> Enderecos { get; set; } = null!;
     }
 }

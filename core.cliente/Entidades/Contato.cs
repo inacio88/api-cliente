@@ -4,6 +4,7 @@ namespace core.cliente.Entidades;
 public class Contato
 {
     public int Id { get; set; }
+    public int IdCliente { get; set; }
     private string _tipo;
     [Required]
     public string Tipo

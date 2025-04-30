@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 public class Endereco
 {
     public int Id { get; set; }
+    public int IdCliente { get; set; }
     private string _tipo = string.Empty;
     [Required]
     public string Tipo
