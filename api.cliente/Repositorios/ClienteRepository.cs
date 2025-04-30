@@ -9,13 +9,17 @@ namespace api.cliente.Repositorios
     {
         public async Task CriarAsync(Cliente cliente)
         {
-            appDbContext.Clientes.Add(cliente);
+            await appDbContext.Clientes.AddAsync(cliente);
             await appDbContext.SaveChangesAsync();
         }
 
         public async Task AtualizarAsync(Cliente cliente)
         {
-            var existente = await appDbContext.Clientes.FindAsync(cliente.Id);
+            var existente = await appDbContext.Clientes
+                .Include(c => c.Contatos)
+                .Include(c => c.Enderecos)
+                .FirstOrDefaultAsync(c => c.Id == cliente.Id);
+
             if (existente is null)
                 throw new InvalidOperationException("Cliente não encontrado.");
 
@@ -24,7 +28,12 @@ namespace api.cliente.Repositorios
             existente.CPF = cliente.CPF;
             existente.RG = cliente.RG;
 
-            appDbContext.Clientes.Update(existente);
+            appDbContext.Contatos.RemoveRange(existente.Contatos);
+            await appDbContext.Contatos.AddRangeAsync(cliente.Contatos);
+
+            appDbContext.Enderecos.RemoveRange(existente.Enderecos);
+            await appDbContext.Enderecos.AddRangeAsync(cliente.Enderecos);
+
             await appDbContext.SaveChangesAsync();
         }
 

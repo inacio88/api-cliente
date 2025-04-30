@@ -13,7 +13,25 @@ namespace core.cliente.Servicos
                 Nome = request.Nome,
                 Email = request.Email,
                 CPF = request.CPF,
-                RG = request.RG
+                RG = request.RG,
+                Contatos = request.Contatos.Select(c => new Contato
+                {
+                    Tipo = c.Tipo,
+                    DDD = c.DDD,
+                    Telefone = c.Telefone
+                }).ToList(),
+                Enderecos = request.Enderecos.Select(e => new Endereco
+                {
+                    Tipo = e.Tipo,
+                    CEP = e.CEP,
+                    Logradouro = e.Logradouro,
+                    Numero = e.Numero,
+                    Bairro = e.Bairro,
+                    Complemento = e.Complemento,
+                    Cidade = e.Cidade,
+                    Estado = e.Estado,
+                    Referencia = e.Referencia
+                }).ToList()
             };
 
             await clienteRepository.CriarAsync(cliente);
@@ -27,7 +45,27 @@ namespace core.cliente.Servicos
                 Nome = request.Nome,
                 Email = request.Email,
                 CPF = request.CPF,
-                RG = request.RG
+                RG = request.RG,
+                Contatos = request.Contatos.Select(c => new Contato
+                {
+                    IdCliente = request.Id,
+                    Tipo = c.Tipo,
+                    DDD = c.DDD,
+                    Telefone = c.Telefone
+                }).ToList(),
+                Enderecos = request.Enderecos.Select(e => new Endereco
+                {
+                    IdCliente = request.Id,
+                    Tipo = e.Tipo,
+                    CEP = e.CEP,
+                    Logradouro = e.Logradouro,
+                    Numero = e.Numero,
+                    Bairro = e.Bairro,
+                    Complemento = e.Complemento,
+                    Cidade = e.Cidade,
+                    Estado = e.Estado,
+                    Referencia = e.Referencia
+                }).ToList()
             };
 
             await clienteRepository.AtualizarAsync(cliente);
